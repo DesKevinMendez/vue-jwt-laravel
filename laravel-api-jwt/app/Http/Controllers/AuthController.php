@@ -22,23 +22,19 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'email' => 'required|string|email|max:255',
-        //     'password' => 'required|string|max:255',
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|max:255',
+        ]);
 
-        // if ($validator->fails()) {
-        //     return response()->json($validator->errors(), 400);
-        // }
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
 
-        // // Guardamos los datos del usuario enviados en la variables $credentials
-        // $credentials = request(['email', 'password']);
-        // if (!$token = auth()->attempt($credentials)) {
-        //     return response()->json(['error' => 'Los datos no coinciden con nuestro registros'], 401);
-        // }
+        // Guardamos los datos del usuario enviados en la variables $credentials
         $credentials = request(['email', 'password']);
-
-        if (! $token = auth()->attempt($credentials)) {
+        
+        if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 

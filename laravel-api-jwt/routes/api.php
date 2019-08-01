@@ -12,3 +12,11 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 });
+
+Route::group([
+    'middleware' => ['api', 'jwt'],
+], function($router){
+
+    Route::apiResource('blog', 'BlogController');
+
+});
