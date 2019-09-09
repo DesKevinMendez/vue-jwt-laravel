@@ -27,3 +27,7 @@ import { Component, Vue } from 'vue-property-decorator';
 })
 export default class Profile extends Vue {}
 </script>
+
+<style lang="scss" scoped>
+  @import '../assets/scss/customer.scss';
+</style>
